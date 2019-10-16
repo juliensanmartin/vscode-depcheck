@@ -1,11 +1,8 @@
-const vscode = require('vscode');
-const depcheck = require('depcheck');
+import * as vscode from 'vscode';
+import * as depcheck from 'depcheck';
 
-/**
- * @param {vscode.ExtensionContext} context
- */
-function activate(context) {
-  let timeout = undefined;
+export function activate(context: vscode.ExtensionContext) {
+  let timeout: NodeJS.Timer | undefined = undefined;
 
   // create a decorator type that we use to decorate small numbers
   const unusedDependenciesDecorationType = vscode.window.createTextEditorDecorationType(
@@ -45,9 +42,9 @@ function activate(context) {
     // console.log(unused.using); // a lookup indicating each dependency is used by which files
     // console.log(unused.invalidFiles); // files that cannot access or parse
     // console.log(unused.invalidDirs); // directories that cannot access
-    let unusedDependencies = [];
+    let unusedDependencies: vscode.DecorationOptions[] = [];
 
-    unused.dependencies.map(dependency => {
+    unused.dependencies.map((dependency: string) => {
       const regEx = new RegExp(`"${dependency}"`);
       let match = regEx.exec(text);
 
@@ -111,9 +108,4 @@ function activate(context) {
   );
 }
 
-function deactivate() {}
-
-module.exports = {
-  activate,
-  deactivate
-};
+export function deactivate() {}
