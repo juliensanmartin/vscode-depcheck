@@ -5,7 +5,7 @@
   "description": "",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.39.0"
+    "vscode": "^1.38.0"
   },
   "categories": [
     "Other"
@@ -13,15 +13,20 @@
   "activationEvents": [
     "workspaceContains:**/package.json"
   ],
-  "main": "src/extension.js",
   "contributes": {
-    "commands": [
+    "colors": [
       {
-        "command": "extension.depcheck",
-        "title": "Depcheck"
+        "id": "myextension.unusedDependencies",
+        "description": "Background decoration color for unused dependencies",
+        "defaults": {
+          "dark": "#FF000055",
+          "light": "#FF000055",
+          "highContrast": "#FF000055"
+        }
       }
     ]
   },
+  "main": "src/extension.js",
   "scripts": {
     "test": "node ./test/runTest.js"
   },
@@ -35,5 +40,8 @@
     "mocha": "^6.1.4",
     "typescript": "^3.3.1",
     "vscode-test": "^1.2.0"
+  },
+  "dependencies": {
+    "depcheck": "^0.8.3"
   }
 }
