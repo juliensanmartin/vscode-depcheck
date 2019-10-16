@@ -11,15 +11,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.helloWorld",
     "workspaceContains:**/package.json"
   ],
   "main": "src/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "extension.helloWorld",
-        "title": "Hello World"
+        "command": "extension.depcheck",
+        "title": "Depcheck"
       }
     ]
   },
