@@ -1,6 +1,11 @@
 import * as vscode from 'vscode';
 import * as depcheck from 'depcheck';
 
+interface DepcheckResponse {
+  dependencies: string[];
+  devDependencies: string[];
+}
+
 export function activate(context: vscode.ExtensionContext) {
   let timeout: NodeJS.Timer | undefined = undefined;
 
@@ -31,39 +36,43 @@ export function activate(context: vscode.ExtensionContext) {
   //     }
   //   );
 
-  let activeEditor = vscode.window.activeTextEditor;
+  let activeEditor: vscode.TextEditor | undefined =
+    vscode.window.activeTextEditor;
 
-  const text = activeEditor.document.getText();
+  let text: string;
 
-  const depcheckResult = unused => {
-    console.log(unused.dependencies); // an array containing the unused dependencies
-    // console.log(unused.devDependencies); // an array containing the unused devDependencies
-    // console.log(unused.missing); // a lookup containing the dependencies missing in `package.json` and where they are used
-    // console.log(unused.using); // a lookup indicating each dependency is used by which files
-    // console.log(unused.invalidFiles); // files that cannot access or parse
-    // console.log(unused.invalidDirs); // directories that cannot access
+  const handleDepcheckResponse = ({
+    dependencies,
+    devDependencies
+  }: DepcheckResponse) => {
+    console.log(dependencies);
+    // console.log(devDependencies);
+
     let unusedDependencies: vscode.DecorationOptions[] = [];
 
-    unused.dependencies.map((dependency: string) => {
+    dependencies.map((dependency: string) => {
       const regEx = new RegExp(`"${dependency}"`);
-      let match = regEx.exec(text);
+      let match: RegExpExecArray | null = regEx.exec(text);
 
-      const startPos = activeEditor.document.positionAt(match.index);
-      const endPos = activeEditor.document.positionAt(
-        match.index + match[0].length
-      );
-      const decoration = {
-        range: new vscode.Range(startPos, endPos),
-        hoverMessage: `Unused dependency ** ${dependency} **`
-      };
+      if (match && activeEditor) {
+        const startPos = activeEditor.document.positionAt(match.index);
+        const endPos = activeEditor.document.positionAt(
+          match.index + match[0].length
+        );
+        const decoration = {
+          range: new vscode.Range(startPos, endPos),
+          hoverMessage: `Unused dependency ** ${dependency} **`
+        };
 
-      unusedDependencies.push(decoration);
+        unusedDependencies.push(decoration);
+      }
     });
 
-    activeEditor.setDecorations(
-      unusedDependenciesDecorationType,
-      unusedDependencies
-    );
+    activeEditor &&
+      activeEditor.setDecorations(
+        unusedDependenciesDecorationType,
+        unusedDependencies
+      );
   };
 
   function updateDecorations() {
@@ -71,7 +80,13 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
 
-    depcheck(vscode.workspace.workspaceFolders[0].uri.path, {}, depcheckResult);
+    text = activeEditor.document.getText();
+
+    depcheck(
+      vscode.workspace.workspaceFolders[0].uri.path,
+      {},
+      handleDepcheckResponse
+    );
   }
 
   function triggerUpdateDecorations() {
