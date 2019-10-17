@@ -3,6 +3,14 @@
   "publisher": "juliensanmartin",
   "displayName": "VSCode DepCheck",
   "description": "Check that your project does not have unused dependencies",
+  "keywords": [
+    "dependencies",
+    "unused",
+    "clean",
+    "npm",
+    "vscode-extension",
+    "package.json"
+  ],
   "version": "1.0.0",
   "repository": {
     "type": "git",
