@@ -14,27 +14,12 @@ export function activate(context: vscode.ExtensionContext) {
     {
       borderWidth: '1px',
       borderStyle: 'solid',
-      overviewRulerColor: 'blue',
+      overviewRulerColor: '#C2161B',
       overviewRulerLane: vscode.OverviewRulerLane.Right,
-      light: {
-        // this color will be used in light color themes
-        borderColor: 'darkblue'
-      },
-      dark: {
-        // this color will be used in dark color themes
-        borderColor: 'lightblue'
-      }
+      borderColor: '#C2161B',
+      color: '#FCC307'
     }
   );
-
-  // create a decorator type that we use to decorate large numbers
-  //   const unusedDependenciesDecorationType = vscode.window.createTextEditorDecorationType(
-  //     {
-  //       cursor: 'crosshair',
-  //       // use a themable color. See package.json for the declaration and default values.
-  //       backgroundColor: { id: 'myextension.largeNumberBackground' }
-  //     }
-  //   );
 
   let activeEditor: vscode.TextEditor | undefined =
     vscode.window.activeTextEditor;
@@ -45,9 +30,6 @@ export function activate(context: vscode.ExtensionContext) {
     dependencies,
     devDependencies
   }: DepcheckResponse) => {
-    console.log(dependencies);
-    // console.log(devDependencies);
-
     let unusedDependencies: vscode.DecorationOptions[] = [];
 
     dependencies.map((dependency: string) => {
@@ -104,7 +86,7 @@ export function activate(context: vscode.ExtensionContext) {
   vscode.window.onDidChangeActiveTextEditor(
     editor => {
       activeEditor = editor;
-      if (editor) {
+      if (editor && editor.document.fileName.includes('package.json')) {
         triggerUpdateDecorations();
       }
     },
@@ -114,7 +96,11 @@ export function activate(context: vscode.ExtensionContext) {
 
   vscode.workspace.onDidChangeTextDocument(
     event => {
-      if (activeEditor && event.document === activeEditor.document) {
+      if (
+        activeEditor &&
+        event.document === activeEditor.document &&
+        event.document.fileName.includes('package.json')
+      ) {
         triggerUpdateDecorations();
       }
     },
