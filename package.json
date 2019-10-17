@@ -1,7 +1,7 @@
 {
   "name": "vscode-depcheck",
   "publisher": "juliensanmartin",
-  "displayName": "VSCode DepCheck",
+  "displayName": "Depcheck",
   "description": "Check that your project does not have unused dependencies",
   "keywords": [
     "dependencies",
