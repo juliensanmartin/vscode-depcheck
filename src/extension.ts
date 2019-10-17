@@ -64,11 +64,13 @@ export function activate(context: vscode.ExtensionContext) {
 
     text = activeEditor.document.getText();
 
-    depcheck(
-      vscode.workspace.workspaceFolders[0].uri.path,
-      {},
-      handleDepcheckResponse
-    );
+    if (vscode.workspace.workspaceFolders) {
+      depcheck(
+        vscode.workspace.workspaceFolders[0].uri.path,
+        {},
+        handleDepcheckResponse
+      );
+    }
   }
 
   function triggerUpdateDecorations() {
