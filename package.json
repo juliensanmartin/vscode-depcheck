@@ -14,7 +14,7 @@
     "package.json"
   ],
   "license": "MIT",
-  "icon": "assets/vscode-depcheck-icon.png",
+  "icon": "assets/icon.png",
   "author": {
     "name": "Julien Sanmartin",
     "email": "sanmartinjulien@gmail.com"
