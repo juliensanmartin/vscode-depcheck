@@ -15,6 +15,10 @@
   ],
   "license": "MIT",
   "icon": "assets/icon.png",
+  "galleryBanner": {
+    "color": "#C2161B",
+    "theme": "dark"
+  },
   "author": {
     "name": "Julien Sanmartin",
     "email": "sanmartinjulien@gmail.com"
