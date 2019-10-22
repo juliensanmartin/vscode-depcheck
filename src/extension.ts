@@ -12,12 +12,13 @@ export function activate(context: vscode.ExtensionContext) {
   // create a decorator type that we use to decorate small numbers
   const unusedDependenciesDecorationType = vscode.window.createTextEditorDecorationType(
     {
-      borderWidth: '1px',
-      borderStyle: 'solid',
-      overviewRulerColor: '#C2161B',
+      // borderWidth: '1px',
+      // borderStyle: 'solid',
+      overviewRulerColor: '#CDCDCD',
       overviewRulerLane: vscode.OverviewRulerLane.Right,
-      borderColor: '#C2161B',
-      color: '#FCC307'
+      // borderColor: '#C2161B',
+      // color: '#CDCDCD',
+      opacity: '0.5'
     }
   );
 
@@ -31,6 +32,8 @@ export function activate(context: vscode.ExtensionContext) {
     devDependencies
   }: DepcheckResponse) => {
     let unusedDependencies: vscode.DecorationOptions[] = [];
+
+    // const allUnusedDependencies = [...dependencies, ...devDependencies];
 
     dependencies.map((dependency: string) => {
       const regEx = new RegExp(`"${dependency}"`);

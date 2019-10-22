@@ -2,7 +2,7 @@
   "name": "vscode-depcheck",
   "publisher": "juliensanmartin",
   "displayName": "Depcheck",
-  "description": "Check that your project does not have unused dependencies",
+  "description": "Highlight unused dependencies in your package.json",
   "keywords": [
     "dependencies",
     "unused",
