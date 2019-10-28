@@ -33,9 +33,9 @@ export function activate(context: vscode.ExtensionContext) {
   }: DepcheckResponse) => {
     let unusedDependencies: vscode.DecorationOptions[] = [];
 
-    // const allUnusedDependencies = [...dependencies, ...devDependencies];
+    const allUnusedDependencies = [...dependencies, ...devDependencies];
 
-    dependencies.map((dependency: string) => {
+    allUnusedDependencies.map((dependency: string) => {
       const regEx = new RegExp(`"${dependency}"`);
       let match: RegExpExecArray | null = regEx.exec(text);
 

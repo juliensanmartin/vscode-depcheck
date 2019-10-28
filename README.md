@@ -6,7 +6,7 @@ Highlight unused dependencies in the `package.json` file to help declutter your 
 
 ### Preview
 
-<img src="https://github.com/juliensanmartin/vscode-depcheck/blob/master/vscode-depcheck-demo.gif?raw=true" alt="highligh unused dependencies"/>
+<img src="https://github.com/juliensanmartin/vscode-depcheck/blob/master/vscode-depcheck-demo.gif?raw=true" alt="highlight unused dependencies"/>
 
 ### Config
 
