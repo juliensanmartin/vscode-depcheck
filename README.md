@@ -8,13 +8,21 @@ Highlight unused dependencies in the `package.json` file to help declutter your 
 
 <img src="https://github.com/juliensanmartin/vscode-depcheck/blob/master/vscode-depcheck-demo.gif?raw=true" alt="highlight unused dependencies"/>
 
-### Config
+### Incorrect Highlights 🚨🚧
 
-Coming soon
+Occasionally dependencies will be incorrectly tagged as unused even though they are and other dependencies won't be highlighted yet they are not used.
+
+If you find that this extension is significantly inaccurate, I encourage you to use directly the excellent [Depcheck](https://github.com/depcheck/depcheck) library and configure it the way it makes sense in your project with [Special](https://github.com/depcheck/depcheck#special).
+
+🏗️ In a future version of this extension, you will be able to configure Depcheck Specials directly in VS Code settings.
+
+### Config ⚙️
+
+🏗️ Coming soon
 
 ### About
 
-This extension is using the awesome [Depcheck](https://github.com/depcheck/depcheck) tool - making the life easier for everyone who like tidy projects.
+🙏 This extension is using the awesome [Depcheck](https://github.com/depcheck/depcheck) tool - making the life easier for everyone who like tidy projects.
 
 ### License
 

@@ -13,12 +13,27 @@
     "vscode-extension",
     "package.json"
   ],
+  "bugs": {
+    "url": "https://github.com/juliensanmartin/vscode-depcheck/issues"
+  },
   "license": "MIT",
   "icon": "assets/icon.png",
   "galleryBanner": {
     "color": "#32323D",
     "theme": "dark"
   },
+  "badges": [
+    {
+      "href": "https://marketplace.visualstudio.com/items?itemName=juliensanmartin.vscode-depcheck",
+      "url": "https://img.shields.io/visual-studio-marketplace/v/juliensanmartin.vscode-depcheck",
+      "description": "Extension version"
+    },
+    {
+      "href": "https://marketplace.visualstudio.com/items?itemName=juliensanmartin.vscode-depcheck",
+      "url": "https://img.shields.io/visual-studio-marketplace/i/juliensanmartin.vscode-depcheck",
+      "description": "Extension installs"
+    }
+  ],
   "author": {
     "name": "Julien Sanmartin",
     "email": "sanmartinjulien@gmail.com"
